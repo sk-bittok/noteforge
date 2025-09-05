@@ -27,6 +27,7 @@ import { toast } from "sonner";
 import Link from "next/link";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export function SignUpForm({
 	className,
@@ -44,6 +45,13 @@ export function SignUpForm({
 			confirmPassword: "",
 		},
 	});
+
+	const signUp = async () => {
+		await authClient.signIn.social({
+			provider: "google",
+			callbackURL: "/dashboard",
+		});
+	};
 
 	const onSubmit = async (data: RegisterSchemaType) => {
 		try {
@@ -165,8 +173,10 @@ export function SignUpForm({
 										variant="outline"
 										className="w-full"
 										disabled={isLoading}
+										type="button"
+										onClick={signUp}
 									>
-										Continue with Google
+										Sign up with Google
 									</Button>
 								</div>
 							</div>

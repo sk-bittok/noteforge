@@ -1,10 +1,16 @@
-import Logout from "@/components/logout";
+import { Notebooks } from "@/components/notebooks";
+import PageWrapper from "@/components/page-wrapper";
+import { getNotebooks } from "@/server/notebooks";
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+	const response = await getNotebooks();
 	return (
-		<div>
-			<Logout />
-			<h1>Dashboard Page</h1>
-		</div>
+		<PageWrapper breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }]}>
+			{response.success ? (
+				<Notebooks notebooks={response?.notebooks} />
+			) : (
+				<div>An error occurred</div>
+			)}
+		</PageWrapper>
 	);
 }
