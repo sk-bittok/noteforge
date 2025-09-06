@@ -30,15 +30,17 @@ export default function RootLayout({
 			<body
 				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
 			>
-				<ThemeProvider
-					attribute={"class"}
-					defaultTheme="system"
-					enableSystem
-					disableTransitionOnChange
-				>
-					<Toaster richColors position="top-right" />
-					<NuqsAdapter>{children}</NuqsAdapter>
-				</ThemeProvider>
+				<NuqsAdapter>
+					<ThemeProvider
+						attribute={"class"}
+						defaultTheme="system"
+						enableSystem
+						disableTransitionOnChange
+					>
+						<Toaster richColors position="top-right" />
+						{children}
+					</ThemeProvider>
+				</NuqsAdapter>
 			</body>
 		</html>
 	);
