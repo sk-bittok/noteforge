@@ -1,18 +1,17 @@
 "use client";
 import Link from "next/link";
-import { Logo } from "@/components/logo";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import React from "react";
 import { cn } from "@/lib/utils";
 import { useScroll } from "motion/react";
 import { ModeToggle } from "./mode-toggle";
+import Image from "next/image";
 
 const menuItems = [
-	{ name: "Features", href: "#link" },
-	{ name: "Solution", href: "#link" },
-	{ name: "Pricing", href: "#link" },
-	{ name: "About", href: "#link" },
+	{ name: "Features", href: "#features" },
+	{ name: "Solution", href: "#solution" },
+	{ name: "About", href: "#about" },
 ];
 
 export const HeroHeader = () => {
@@ -45,7 +44,13 @@ export const HeroHeader = () => {
 								aria-label="home"
 								className="flex items-center space-x-2"
 							>
-								<Logo />
+								<Image
+									src={"/noteforge-logo.png"}
+									alt="Notes forge logo"
+									width={60}
+									height={60}
+								/>
+								<span className="text-2xl font-bold">Notesforge</span>
 							</Link>
 
 							<button

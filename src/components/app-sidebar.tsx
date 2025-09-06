@@ -10,7 +10,7 @@ import {
 import { getNotebooks } from "@/server/notebooks";
 import Image from "next/image";
 import SidebarClient from "./sidebar-client";
-
+import Link from "next/link";
 
 export async function AppSidebar({
 	...props
@@ -25,20 +25,28 @@ export async function AppSidebar({
 			...(notebooksData.map((notebook) => ({
 				title: notebook.name,
 				url: `/dashboard/notebooks/${notebook.id}`,
-				items: notebook.notes.map((note) => ({
-					title: note.title,
-					url: `/dashboard/notebooks/${notebook.id}/notes/${note.id}`,
-				})) || [],
+				items:
+					notebook.notes.map((note) => ({
+						title: note.title,
+						url: `/dashboard/notebooks/${notebook.id}/notes/${note.id}`,
+					})) || [],
 			})) ?? []),
 		],
 	};
 	return (
 		<Sidebar {...props}>
 			<SidebarHeader>
-				<div className="flex items-center gap-2">
-					<Image src={"/noteforge-logo.png"} alt="Noteforge logo" width={32} height={31} />
-					<h2>NotesForge</h2>
-				</div>
+				<Link href={"/"}>
+					<div className="flex items-center gap-2 cursor-pointer">
+						<Image
+							src={"/noteforge-logo.png"}
+							alt="Noteforge logo"
+							width={32}
+							height={31}
+						/>
+						<h2>NotesForge</h2>
+					</div>
+				</Link>
 				<SearchForm />
 			</SidebarHeader>
 			<SidebarContent className="gap-0">

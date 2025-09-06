@@ -1,22 +1,15 @@
 import { Logo } from "@/components/logo";
+import Image from "next/image";
 import Link from "next/link";
 
 const links = [
 	{
 		title: "Features",
-		href: "#",
+		href: "#features",
 	},
 	{
 		title: "Solution",
-		href: "#",
-	},
-	{
-		title: "Customers",
-		href: "#",
-	},
-	{
-		title: "Pricing",
-		href: "#",
+		href: "#solution",
 	},
 	{
 		title: "Help",
@@ -24,16 +17,26 @@ const links = [
 	},
 	{
 		title: "About",
-		href: "#",
+		href: "#about",
 	},
 ];
 
 export default function Footer() {
 	return (
-		<footer className="py-16 md:py-32">
+		<footer className="py-16 md:py-32" id="#about">
 			<div className="mx-auto max-w-5xl px-6">
-				<Link href="/" aria-label="go home" className="mx-auto block size-fit">
-					<Logo />
+				<Link
+					href="/"
+					aria-label="go home"
+					className="mx-auto flex items-center size-fit"
+				>
+					<Image
+						src={"/noteforge-logo.png"}
+						alt="NoteForge logo"
+						width={32}
+						height={32}
+					/>
+					<span className="text-lg font-medium">NotesForge</span>
 				</Link>
 
 				<div className="my-8 flex flex-wrap justify-center gap-6 text-sm">
