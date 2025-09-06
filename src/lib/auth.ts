@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import PasswordResetEmail from "@/components/emails/password-reset-email";
 import VerificationEmail from "@/components/emails/verification-email";
 import { db } from "@/db/drizzle";

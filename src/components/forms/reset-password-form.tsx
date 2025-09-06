@@ -18,7 +18,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useForm } from "react-hook-form";
 import { resetPasswordSchema, ResetPasswordType } from "@/schemas/auth-schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,7 +28,7 @@ import { Loader2 } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { resetPassword } from "@/server/users";
 
-export function ResetPasswordForm({
+function ResetPasswordFormInner({
 	className,
 	...props
 }: React.ComponentProps<"div">) {
@@ -137,5 +137,41 @@ export function ResetPasswordForm({
 				</CardContent>
 			</Card>
 		</div>
+	);
+}
+
+function ResetPasswordFormSkeleton() {
+	return (
+		<div className="flex flex-col gap-6">
+			<Card>
+				<CardHeader>
+					<CardTitle>Reset your password</CardTitle>
+					<CardDescription>
+						Fill the form below with your new password.
+					</CardDescription>
+				</CardHeader>
+				<CardContent>
+					<div className="flex flex-col gap-6">
+						<div className="grid gap-3">
+							<div className="h-4 bg-gray-200 rounded animate-pulse" />
+							<div className="h-10 bg-gray-200 rounded animate-pulse" />
+						</div>
+						<div className="grid gap-3">
+							<div className="h-4 bg-gray-200 rounded animate-pulse" />
+							<div className="h-10 bg-gray-200 rounded animate-pulse" />
+						</div>
+						<div className="h-10 bg-gray-200 rounded animate-pulse" />
+					</div>
+				</CardContent>
+			</Card>
+		</div>
+	);
+}
+
+export function ResetPasswordForm(props: React.ComponentProps<"div">) {
+	return (
+		<Suspense fallback={<ResetPasswordFormSkeleton />}>
+			<ResetPasswordFormInner {...props} />
+		</Suspense>
 	);
 }
